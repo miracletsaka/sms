@@ -5,9 +5,7 @@ import { auth } from "./app/authhandlers/auth";
 const protectedRoutes = ["/dashboard"];
 const publicRoutes = ["/login", "/register", "/"];
 const allowedOrigins = [
-  'http://localhost:3000',
-  'http://localhost:3001', 
-  'https://conference-seven-swart.vercel.app',
+  'https://sms-two-sepia.vercel.app',
 ];
 
 export default async function proxy(request: NextRequest) {
