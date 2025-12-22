@@ -31,7 +31,9 @@ const ProductItem = ({
         className="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-30"
       />
       <div className="relative p-4 h-full flex flex-col justify-end">
-        <h4 className="text-sm font-bold mb-1 text-white group-hover:translate-x-1 transition-transform">{title}</h4>
+        <h4 className="text-sm font-bold mb-1 text-white group-hover:translate-x-1 transition-transform">
+          {title}
+        </h4>
         <p className="text-xs text-white/90 leading-relaxed">{description}</p>
       </div>
     </a>
@@ -64,7 +66,9 @@ const SimpleLink = ({
         />
       </div>
       <div className="flex-1">
-        <div className="text-sm font-semibold text-gray-900 group-hover:text-indigo-600 transition-colors">{title}</div>
+        <div className="text-sm font-semibold text-gray-900 group-hover:text-indigo-600 transition-colors">
+          {title}
+        </div>
         {description && <div className="text-xs text-gray-500 mt-0.5">{description}</div>}
       </div>
     </a>
@@ -78,88 +82,88 @@ export function Navigation() {
   return (
     <>
       <div className="bg-indigo-100/80 text-gray-400 text-[7px] font-bold backdrop-blur-sm py-3 px-4 text-center relative border-b border-indigo-200/50">
-        <span className="">
-          How some schools are saving 10+ hours a week with our all-in-one system.
+        <span>
+          How schools are saving 10+ hours per week with our all-in-one school management system.
         </span>
-        <button className="ml-3 bg-indigo-500 px-4 py-1.5 rounded-full text-white  hover:bg-indigo-600 transition-colors">
-          Explore
+        <button className="ml-3 bg-indigo-500 px-4 py-1.5 rounded-full text-white hover:bg-indigo-600 transition-colors">
+          See How
         </button>
         <button className="absolute right-4 top-1/2 -translate-y-1/2 hover:text-gray-700">
           ✕
         </button>
       </div>
+
       <nav
         className="flex items-center text-xs font-bold text-gray-400 justify-between px-4 md:px-8 relative z-50"
         onMouseLeave={() => setActive(null)}
       >
         <div className="flex items-center gap-8">
           <div className="font-bold text-gray-900">
-            {/* logo in png */}
-            <img src="/sms.png" alt="SMS Logo" className="w-18 h-auto" />
+            <img src="/sms.png" alt="School Management System Logo" className="w-18 h-auto" />
           </div>
 
           <div className="hidden lg:flex items-center gap-6">
-            <MenuItem setActive={setActive} active={active} item="Product">
+            <MenuItem setActive={setActive} active={active} item="Platform">
               <div className="grid grid-cols-2 gap-3 p-4 w-[640px]">
                 <ProductItem
-                  title="Video Editor"
+                  title="Student Management"
                   href="#"
-                  imageQuery="professional video editing interface"
+                  imageQuery="student information system dashboard"
                   bgColor="bg-gradient-to-br from-purple-600 to-indigo-600"
-                  description="Professional video editing tools in your browser"
+                  description="Manage student records, profiles, and enrollment"
                 />
                 <ProductItem
-                  title="AI Video Generator"
+                  title="Attendance Tracking"
                   href="#"
-                  imageQuery="AI generating video content"
+                  imageQuery="school attendance dashboard"
                   bgColor="bg-gradient-to-br from-pink-600 to-rose-600"
-                  description="Create stunning videos from text with AI"
+                  description="Daily attendance for students and teachers"
                 />
                 <ProductItem
-                  title="Screen Recorder"
+                  title="Exams & Grading"
                   href="#"
-                  imageQuery="screen recording software"
+                  imageQuery="exam results management system"
                   bgColor="bg-gradient-to-br from-blue-600 to-cyan-600"
-                  description="Record your screen, camera, and audio"
+                  description="Create exams, record scores, and generate reports"
                 />
                 <ProductItem
-                  title="Subtitles & Transcription"
+                  title="Fees & Billing"
                   href="#"
-                  imageQuery="video subtitles and captions"
+                  imageQuery="school fee management system"
                   bgColor="bg-gradient-to-br from-emerald-600 to-teal-600"
-                  description="Auto-generate accurate subtitles instantly"
+                  description="Track fees, payments, and outstanding balances"
                 />
               </div>
             </MenuItem>
 
-            <MenuItem setActive={setActive} active={active} item="Use Cases">
+            <MenuItem setActive={setActive} active={active} item="Solutions">
               <div className="flex flex-col gap-2 p-4 w-[340px]">
                 <SimpleLink
-                  title="Marketing & Social Media"
-                  description="Engage your audience"
+                  title="Primary Schools"
+                  description="Simplify daily school operations"
                   href="#"
-                  imageQuery="social media marketing"
+                  imageQuery="primary school classroom"
                   bgColor="bg-gradient-to-br from-orange-400 to-pink-500"
                 />
                 <SimpleLink
-                  title="Business & Sales"
-                  description="Close more deals"
+                  title="Secondary Schools"
+                  description="Manage academics at scale"
                   href="#"
-                  imageQuery="business presentation"
+                  imageQuery="secondary school students"
                   bgColor="bg-gradient-to-br from-blue-500 to-indigo-600"
                 />
                 <SimpleLink
-                  title="Education & Training"
-                  description="Teach effectively"
+                  title="Colleges & Institutes"
+                  description="Advanced academic administration"
                   href="#"
-                  imageQuery="online education"
+                  imageQuery="college campus management system"
                   bgColor="bg-gradient-to-br from-green-500 to-emerald-600"
                 />
                 <SimpleLink
-                  title="Content Creators"
-                  description="Grow your channel"
+                  title="International Schools"
+                  description="Multi-campus & multi-curriculum support"
                   href="#"
-                  imageQuery="content creation"
+                  imageQuery="international school classroom"
                   bgColor="bg-gradient-to-br from-purple-500 to-pink-600"
                 />
               </div>
@@ -167,24 +171,24 @@ export function Navigation() {
 
             <button className="flex items-center gap-1 hover:text-gray-900 transition-colors">
               <Sparkles className="w-4 h-4 text-indigo-500" />
-              AI
+              AI Insights
             </button>
 
-            <MenuItem setActive={setActive} active={active} item="APIs">
+            <MenuItem setActive={setActive} active={active} item="Integrations">
               <div className="flex flex-col gap-3 p-4 w-[380px]">
                 <ProductItem
-                  title="Video API"
+                  title="Parent Communication API"
                   href="#"
-                  imageQuery="API code integration"
+                  imageQuery="school parent communication app"
                   bgColor="bg-gradient-to-br from-slate-700 to-gray-900"
-                  description="Programmatic access to video tools"
+                  description="Send notifications, SMS, and announcements"
                 />
                 <ProductItem
-                  title="Transcription API"
+                  title="Reporting API"
                   href="#"
-                  imageQuery="speech to text technology"
+                  imageQuery="education analytics dashboard"
                   bgColor="bg-gradient-to-br from-violet-600 to-purple-700"
-                  description="Speech-to-text at scale"
+                  description="Export academic and financial reports"
                 />
               </div>
             </MenuItem>
@@ -194,41 +198,41 @@ export function Navigation() {
                 <div className="flex flex-col gap-2">
                   <div className="text-xs font-semibold text-gray-400 px-2 mb-1">LEARN</div>
                   <SimpleLink
-                    title="Blog"
-                    description="Tips & tutorials"
+                    title="School Admin Blog"
+                    description="Best practices & guides"
                     href="#"
-                    imageQuery="blog articles"
+                    imageQuery="school administration blog"
                     bgColor="bg-gradient-to-br from-amber-400 to-orange-500"
                   />
                   <SimpleLink
-                    title="Video Tutorials"
-                    description="Step-by-step guides"
+                    title="Training Videos"
+                    description="Platform walkthroughs"
                     href="#"
-                    imageQuery="video tutorial"
+                    imageQuery="software training video"
                     bgColor="bg-gradient-to-br from-red-500 to-pink-600"
                   />
                   <SimpleLink
-                    title="Help Center"
-                    description="Get support"
+                    title="Support Center"
+                    description="Help for admins & teachers"
                     href="#"
-                    imageQuery="customer support"
+                    imageQuery="education support center"
                     bgColor="bg-gradient-to-br from-cyan-500 to-blue-600"
                   />
                 </div>
                 <div className="flex flex-col gap-2">
                   <div className="text-xs font-semibold text-gray-400 px-2 mb-1">COMPANY</div>
                   <SimpleLink
-                    title="About Us"
-                    description="Our story"
+                    title="About the Platform"
+                    description="Our mission in education"
                     href="#"
-                    imageQuery="company team"
+                    imageQuery="education technology team"
                     bgColor="bg-gradient-to-br from-indigo-500 to-purple-600"
                   />
                   <SimpleLink
                     title="Careers"
-                    description="Join our team"
+                    description="Build the future of education"
                     href="#"
-                    imageQuery="office workspace"
+                    imageQuery="edtech office workspace"
                     bgColor="bg-gradient-to-br from-teal-500 to-green-600"
                   />
                 </div>
@@ -242,22 +246,23 @@ export function Navigation() {
                   className="group relative overflow-hidden p-5 rounded-xl border-2 border-indigo-500 bg-gradient-to-br from-indigo-50 to-purple-50 hover:shadow-lg transition-all duration-300"
                 >
                   <div className="flex items-center justify-between mb-2">
-                    <h4 className="text-sm font-bold text-gray-900">Pro Plan</h4>
+                    <h4 className="text-sm font-bold text-gray-900">School Plan</h4>
                     <DollarSign className="w-5 h-5 text-indigo-500" />
                   </div>
-                  <p className="text-xs text-gray-600 mb-2">Full access to all features</p>
-                  <div className="text-lg font-bold text-indigo-600">$24/mo</div>
+                  <p className="text-xs text-gray-600 mb-2">Everything a school needs</p>
+                  <div className="text-lg font-bold text-indigo-600">From $29/mo</div>
                 </a>
+
                 <a
                   href="#"
                   className="group relative overflow-hidden p-5 rounded-xl border border-gray-200 bg-gradient-to-br from-gray-50 to-slate-50 hover:shadow-lg transition-all duration-300"
                 >
                   <div className="flex items-center justify-between mb-2">
-                    <h4 className="text-sm font-bold text-gray-900">Business</h4>
+                    <h4 className="text-sm font-bold text-gray-900">Multi-Campus</h4>
                     <Building2 className="w-5 h-5 text-gray-600" />
                   </div>
-                  <p className="text-xs text-gray-600 mb-2">Advanced tools for teams</p>
-                  <div className="text-lg font-bold text-gray-900">$59/mo</div>
+                  <p className="text-xs text-gray-600 mb-2">For large institutions</p>
+                  <div className="text-lg font-bold text-gray-900">Custom Pricing</div>
                 </a>
               </div>
             </MenuItem>
@@ -265,10 +270,17 @@ export function Navigation() {
         </div>
 
         <div className="hidden md:flex items-center gap-4">
-          <Link href={'/'} className="hover:text-gray-900 transition-colors">Contact Sales</Link>
-          <Link href={'/login'} className="hover:text-gray-900 transition-colors">Login</Link>
-          <Link href={'/register'} className="bg-black text-white px-5 py-2 rounded-full font-medium hover:bg-gray-800 transition-colors">
-            Register
+          <Link href="/" className="hover:text-gray-900 transition-colors">
+            Book a Demo
+          </Link>
+          <Link href="/login" className="hover:text-gray-900 transition-colors">
+            Login
+          </Link>
+          <Link
+            href="/register"
+            className="bg-black text-white px-5 py-2 rounded-full font-medium hover:bg-gray-800 transition-colors"
+          >
+            Get Started
           </Link>
         </div>
 

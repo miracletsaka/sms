@@ -3,11 +3,13 @@
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
+
 type StatItem = {
   value: string
   description: string
   delay: number
 }
+
 type DataPoint = {
   id: number
   left: number
@@ -16,28 +18,30 @@ type DataPoint = {
   direction: "up" | "down"
   delay: number
 }
+
 const stats: StatItem[] = [
   {
-    value: "1B+",
-    description: "Messages analyzed\ndaily",
+    value: "50K+",
+    description: "Students managed\nacross schools",
     delay: 0,
   },
   {
     value: "99.9%",
-    description: "Accuracy in tone\ndetection",
+    description: "Attendance accuracy\nwith smart tracking",
     delay: 0.2,
   },
   {
-    value: "50+",
-    description: "Languages supported\nworldwide",
+    value: "30+",
+    description: "Modules built for\nschool operations",
     delay: 0.4,
   },
   {
     value: "1000+",
-    description: "Organizations using\nAuralink",
+    description: "Schools using\nSMS Platform",
     delay: 0.6,
   },
 ]
+
 const generateDataPoints = (): DataPoint[] => {
   const points: DataPoint[] = []
   const baseLeft = 1
@@ -63,6 +67,7 @@ export const BankingScaleHero = () => {
   const [isVisible, setIsVisible] = useState(false)
   const [dataPoints] = useState<DataPoint[]>(generateDataPoints())
   const [typingComplete, setTypingComplete] = useState(false)
+
   useEffect(() => {
     setIsVisible(true)
     const timer = setTimeout(() => setTypingComplete(true), 1000)
@@ -98,7 +103,7 @@ export const BankingScaleHero = () => {
                     color: "#146e96",
                   }}
                 >
-                  Trusted at scale
+                  Trusted by schools
                 </motion.span>
                 <motion.span
                   initial={{
@@ -121,12 +126,13 @@ export const BankingScaleHero = () => {
             </div>
 
             <h2
-              className="text-4xl lg:text-5xl font-black text-gray-900 mb-4 max-w-4xl mx-auto" style={{
+              className="text-4xl lg:text-5xl font-black text-gray-900 mb-4 max-w-4xl mx-auto"
+              style={{
                 fontFamily: "'Sora', 'Space Grotesk', sans-serif",
-                letterSpacing: '-0.02em'
+                letterSpacing: "-0.02em",
               }}
             >
-              Analyzing billions of conversations daily{" "}
+              Running school operations in one place{" "}
               <span
                 className="opacity-40"
                 style={{
@@ -134,7 +140,7 @@ export const BankingScaleHero = () => {
                   fontSize: "40px",
                 }}
               >
-                for the world's most sophisticated teams and enterprises.
+                for admins, teachers, and parents—without the paperwork.
               </span>
             </h2>
 
@@ -142,18 +148,17 @@ export const BankingScaleHero = () => {
               className="text-sm lg:text-base font-bold text-gray-600 max-w-2xl mx-auto mb-5 "
               style={{
                 fontFamily: "'Inter', -apple-system, sans-serif",
-                letterSpacing: '-0.02em',
-                lineHeight: '1.3',
-              
+                letterSpacing: "-0.02em",
+                lineHeight: "1.3",
               }}
             >
-              As the intelligence layer for modern communication, we provide real-time insights and emotional detection
-              through our advanced AI-powered platform.
+              A modern school management system for attendance, fees, exams, results, timetables, communication, and
+              reporting—built to save time and keep everyone aligned.
             </p>
 
             <button className="relative inline-flex justify-center items-center leading-4 text-center cursor-pointer whitespace-nowrap outline-none font-medium h-9 text-[#232730] bg-white/50 backdrop-blur-sm shadow-[0_1px_1px_0_rgba(255,255,255,0),0_0_0_1px_rgba(87,90,100,0.12)] transition-all duration-200 ease-in-out rounded-lg px-4 mt-5 text-sm group hover:shadow-[0_1px_2px_0_rgba(0,0,0,0.05),0_0_0_1px_rgba(87,90,100,0.18)]">
               <span className="relative z-10 flex items-center gap-1">
-                Learn about our platform
+                Explore the School Management System
                 <ArrowRight className="w-4 h-4 -mr-1 transition-transform duration-150 group-hover:translate-x-1" />
               </span>
             </button>
@@ -256,9 +261,7 @@ export const BankingScaleHero = () => {
                       >
                         {stat.value}
                       </span>
-                      <p className="text-xs text-gray-700 font-bold">
-                        {stat.description}
-                      </p>
+                      <p className="text-xs text-gray-700 font-bold">{stat.description}</p>
                     </motion.div>
                   </div>
                 ))}

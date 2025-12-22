@@ -3,36 +3,42 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Plus } from "lucide-react"
+
 type FAQItem = {
   question: string
   answer: string
 }
+
 type FAQSectionProps = {
   title?: string
   faqs?: FAQItem[]
 }
+
 const defaultFAQs: FAQItem[] = [
   {
-    question: "What is Auralink and how does it work?",
+    question: "What is the School Management System and how does it work?",
     answer:
-      "Auralink is an AI-powered intelligence layer that connects all your communication tools—calls, chats, and meetings—into a unified system. It analyzes conversations in real-time to provide insights on sentiment, tone, team alignment, and collaboration patterns. Simply integrate Auralink with your existing tools like Slack, Zoom, or Microsoft Teams, and start gaining actionable insights immediately.",
+      "Our School Management System is an all-in-one platform that helps schools manage students, staff, academics, and administration in one place. It centralizes key workflows like admissions, attendance, fees, exams, results, timetables, and communication. Schools simply create their accounts, set up classes and users (admins, teachers, parents), and start running daily operations digitally from day one.",
   },
   {
-    question: "How does Auralink use my data to build a custom AI chat?",
+    question: "Can parents and teachers use the system on mobile?",
     answer:
-      "Auralink processes your communication data using advanced natural language processing and machine learning models. All data is encrypted end-to-end and processed in compliance with enterprise-grade security standards. Your data is never shared with third parties, and you maintain complete control over what gets analyzed. The AI learns from patterns in your team's communication to provide personalized insights specific to your organization.",
+      "Yes. The platform is designed for mobile-first use so teachers can record attendance and grades quickly, and parents can receive announcements, reminders, results, and fee updates on their phones. Access is role-based—admins, teachers, students, and parents only see what they are permitted to see.",
   },
   {
-    question: "How do I get started with Auralink and what are the pricing options?",
+    question: "How do we get started and what are the pricing options for schools?",
     answer:
-      "Getting started is simple: sign up for a free trial, connect your communication tools, and start analyzing within minutes. We offer flexible pricing tiers: Starter (free for small teams), Professional ($29/user/month), and Enterprise (custom pricing with dedicated support). All plans include core features like sentiment analysis and real-time insights. Contact our sales team for volume discounts and custom enterprise solutions.",
+      "Getting started is simple: request a demo or create an account, then we help you set up your school structure (classes, terms, subjects, fees, and users). Pricing is flexible based on school size and modules needed. We typically offer a School Plan (for single schools) and Multi-Campus (for groups of schools). Contact our team for a quote and onboarding support.",
   },
 ]
+
 export const FAQSection = ({ title = "Frequently asked questions", faqs = defaultFAQs }: FAQSectionProps) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
+
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index)
   }
+
   return (
     <section className="w-full py-24 px-8">
       <div className="max-w-5xl mx-auto">
@@ -40,10 +46,11 @@ export const FAQSection = ({ title = "Frequently asked questions", faqs = defaul
           {/* Left Column - Title */}
           <div className="lg:col-span-4">
             <h2
-              className="text-4xl lg:text-5xl font-black text-gray-900 mb-4 max-w-4xl mx-auto" style={{
-              fontFamily: "'Sora', 'Space Grotesk', sans-serif",
-              letterSpacing: '-0.02em'
-            }}
+              className="text-4xl lg:text-5xl font-black text-gray-900 mb-4 max-w-4xl mx-auto"
+              style={{
+                fontFamily: "'Sora', 'Space Grotesk', sans-serif",
+                letterSpacing: "-0.02em",
+              }}
             >
               {title}
             </h2>
@@ -59,12 +66,7 @@ export const FAQSection = ({ title = "Frequently asked questions", faqs = defaul
                     className="w-full flex items-center justify-between py-6 text-left group hover:opacity-70 transition-opacity duration-150"
                     aria-expanded={openIndex === index}
                   >
-                    <span
-                      className="text-sm text-gray-700 font-bold"
-                     
-                    >
-                      {faq.question}
-                    </span>
+                    <span className="text-sm text-gray-700 font-bold">{faq.question}</span>
                     <motion.div
                       animate={{
                         rotate: openIndex === index ? 45 : 0,

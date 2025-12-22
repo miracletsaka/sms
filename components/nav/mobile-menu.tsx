@@ -128,67 +128,67 @@ export function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () =
             className="fixed top-[72px] right-0 bottom-0 w-full max-w-md bg-white shadow-2xl z-50 overflow-y-auto lg:hidden"
           >
             <div className="py-4">
-              <MobileMenuSection title="Product" defaultOpen={true}>
+              <MobileMenuSection title="Platform" defaultOpen={true}>
                 <div className="flex flex-col gap-3">
                   <MobileProductItem
-                    title="Video Editor"
+                    title="Student Management"
                     href="#"
-                    imageQuery="professional video editing interface"
+                    imageQuery="student information system dashboard"
                     bgColor="bg-gradient-to-br from-purple-600 to-indigo-600"
-                    description="Professional video editing tools in your browser"
+                    description="Profiles, enrollment, classes, and student records"
                   />
                   <MobileProductItem
-                    title="AI Video Generator"
+                    title="Attendance Tracking"
                     href="#"
-                    imageQuery="AI generating video content"
+                    imageQuery="school attendance tracking dashboard"
                     bgColor="bg-gradient-to-br from-pink-600 to-rose-600"
-                    description="Create stunning videos from text with AI"
+                    description="Daily attendance for students and teachers"
                   />
                   <MobileProductItem
-                    title="Screen Recorder"
+                    title="Exams & Results"
                     href="#"
-                    imageQuery="screen recording software"
+                    imageQuery="exam results management dashboard"
                     bgColor="bg-gradient-to-br from-blue-600 to-cyan-600"
-                    description="Record your screen, camera, and audio"
+                    description="Scores, grading, report cards, and analytics"
                   />
                   <MobileProductItem
-                    title="Subtitles & Transcription"
+                    title="Fees & Billing"
                     href="#"
-                    imageQuery="video subtitles and captions"
+                    imageQuery="school fees payment management system"
                     bgColor="bg-gradient-to-br from-emerald-600 to-teal-600"
-                    description="Auto-generate accurate subtitles instantly"
+                    description="Invoices, payments, balances, and receipts"
                   />
                 </div>
               </MobileMenuSection>
 
-              <MobileMenuSection title="Use Cases">
+              <MobileMenuSection title="Solutions">
                 <div className="flex flex-col gap-2">
                   <MobileSimpleLink
-                    title="Marketing & Social Media"
-                    description="Engage your audience"
+                    title="Primary Schools"
+                    description="Simplify day-to-day operations"
                     href="#"
-                    imageQuery="social media marketing"
+                    imageQuery="primary school classroom"
                     bgColor="bg-gradient-to-br from-orange-400 to-pink-500"
                   />
                   <MobileSimpleLink
-                    title="Business & Sales"
-                    description="Close more deals"
+                    title="Secondary Schools"
+                    description="Manage academics and discipline"
                     href="#"
-                    imageQuery="business presentation"
+                    imageQuery="secondary school students"
                     bgColor="bg-gradient-to-br from-blue-500 to-indigo-600"
                   />
                   <MobileSimpleLink
-                    title="Education & Training"
-                    description="Teach effectively"
+                    title="Colleges & Institutes"
+                    description="Advanced academic administration"
                     href="#"
-                    imageQuery="online education"
+                    imageQuery="college administration office"
                     bgColor="bg-gradient-to-br from-green-500 to-emerald-600"
                   />
                   <MobileSimpleLink
-                    title="Content Creators"
-                    description="Grow your channel"
+                    title="International Schools"
+                    description="Multi-campus & multi-curriculum support"
                     href="#"
-                    imageQuery="content creation"
+                    imageQuery="international school classroom"
                     bgColor="bg-gradient-to-br from-purple-500 to-pink-600"
                   />
                 </div>
@@ -200,25 +200,25 @@ export function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () =
                   className="flex items-center gap-2 px-6 py-4 text-gray-900 font-semibold hover:bg-gray-50 transition-colors"
                 >
                   <Sparkles className="w-5 h-5 text-indigo-500" />
-                  AI
+                  AI Insights
                 </a>
               </div>
 
-              <MobileMenuSection title="APIs">
+              <MobileMenuSection title="Integrations">
                 <div className="flex flex-col gap-3">
                   <MobileProductItem
-                    title="Video API"
+                    title="Parent Messaging API"
                     href="#"
-                    imageQuery="API code integration"
+                    imageQuery="parent teacher communication app"
                     bgColor="bg-gradient-to-br from-slate-700 to-gray-900"
-                    description="Programmatic access to video tools"
+                    description="Announcements, SMS, reminders, and notifications"
                   />
                   <MobileProductItem
-                    title="Transcription API"
+                    title="Reporting API"
                     href="#"
-                    imageQuery="speech to text technology"
+                    imageQuery="education analytics reports dashboard"
                     bgColor="bg-gradient-to-br from-violet-600 to-purple-700"
-                    description="Speech-to-text at scale"
+                    description="Export results, attendance, and financial reports"
                   />
                 </div>
               </MobileMenuSection>
@@ -227,39 +227,39 @@ export function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () =
                 <div className="flex flex-col gap-3">
                   <div className="text-xs font-semibold text-gray-400 mb-1">LEARN</div>
                   <MobileSimpleLink
-                    title="Blog"
-                    description="Tips & tutorials"
+                    title="School Admin Blog"
+                    description="Guides, tips, and best practices"
                     href="#"
-                    imageQuery="blog articles"
+                    imageQuery="school administration blog"
                     bgColor="bg-gradient-to-br from-amber-400 to-orange-500"
                   />
                   <MobileSimpleLink
-                    title="Video Tutorials"
-                    description="Step-by-step guides"
+                    title="Training Videos"
+                    description="Quick platform walkthroughs"
                     href="#"
-                    imageQuery="video tutorial"
+                    imageQuery="software training videos"
                     bgColor="bg-gradient-to-br from-red-500 to-pink-600"
                   />
                   <MobileSimpleLink
-                    title="Help Center"
-                    description="Get support"
+                    title="Support Center"
+                    description="Help for admins, teachers, and parents"
                     href="#"
-                    imageQuery="customer support"
+                    imageQuery="customer support help center"
                     bgColor="bg-gradient-to-br from-cyan-500 to-blue-600"
                   />
                   <div className="text-xs font-semibold text-gray-400 mt-3 mb-1">COMPANY</div>
                   <MobileSimpleLink
-                    title="About Us"
-                    description="Our story"
+                    title="About the Platform"
+                    description="Our mission in education"
                     href="#"
-                    imageQuery="company team"
+                    imageQuery="education technology team"
                     bgColor="bg-gradient-to-br from-indigo-500 to-purple-600"
                   />
                   <MobileSimpleLink
                     title="Careers"
-                    description="Join our team"
+                    description="Build the future of schools"
                     href="#"
-                    imageQuery="office workspace"
+                    imageQuery="edtech office workspace"
                     bgColor="bg-gradient-to-br from-teal-500 to-green-600"
                   />
                 </div>
@@ -272,22 +272,22 @@ export function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () =
                     className="relative overflow-hidden p-5 rounded-xl border-2 border-indigo-500 bg-gradient-to-br from-indigo-50 to-purple-50 hover:shadow-lg transition-all"
                   >
                     <div className="flex items-center justify-between mb-2">
-                      <h4 className="text-sm font-bold text-gray-900">Pro Plan</h4>
+                      <h4 className="text-sm font-bold text-gray-900">School Plan</h4>
                       <DollarSign className="w-5 h-5 text-indigo-500" />
                     </div>
-                    <p className="text-xs text-gray-600 mb-2">Full access to all features</p>
-                    <div className="text-lg font-bold text-indigo-600">$24/mo</div>
+                    <p className="text-xs text-gray-600 mb-2">Everything a school needs</p>
+                    <div className="text-lg font-bold text-indigo-600">From $29/mo</div>
                   </a>
                   <a
                     href="#"
                     className="relative overflow-hidden p-5 rounded-xl border border-gray-200 bg-gradient-to-br from-gray-50 to-slate-50 hover:shadow-lg transition-all"
                   >
                     <div className="flex items-center justify-between mb-2">
-                      <h4 className="text-sm font-bold text-gray-900">Business</h4>
+                      <h4 className="text-sm font-bold text-gray-900">Multi-Campus</h4>
                       <Building2 className="w-5 h-5 text-gray-600" />
                     </div>
-                    <p className="text-xs text-gray-600 mb-2">Advanced tools for teams</p>
-                    <div className="text-lg font-bold text-gray-900">$59/mo</div>
+                    <p className="text-xs text-gray-600 mb-2">For large institutions</p>
+                    <div className="text-lg font-bold text-gray-900">Custom Pricing</div>
                   </a>
                 </div>
               </MobileMenuSection>
@@ -295,13 +295,13 @@ export function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () =
               {/* CTA Buttons */}
               <div className="px-6 py-6 space-y-3">
                 <button className="w-full px-5 py-3 text-sm font-semibold text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
-                  Contact Sales
+                  Book a Demo
                 </button>
                 <button className="w-full px-5 py-3 text-sm font-semibold text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
                   Login
                 </button>
                 <button className="w-full bg-black text-white px-5 py-3 rounded-full font-semibold hover:bg-gray-800 transition-colors">
-                  Sign Up
+                  Get Started
                 </button>
               </div>
             </div>
