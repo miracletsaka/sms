@@ -8,7 +8,7 @@ const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "DCTFUSION - Education Management Platform",
+  title: "SMS - Education Management Platform",
   description: "Transform your educational institution with our comprehensive management platform",
   generator: "v0.app",
 }

@@ -16,10 +16,9 @@
     "utils": "@/lib/utils",
     "ui": "@/components/ui",
     "lib": "@/lib",
-    "hooks": "@/hooks",
-    "types": "@/types",
-    "actions": "@/actions",
-    "emails": "@/emails"
+    "hooks": "@/hooks"
   },
-  "registries": {}
+  "registries": {
+    "@tailark": "https://tailark.com/r/{name}.json"
+  }
 }

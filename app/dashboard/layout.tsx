@@ -12,7 +12,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   return (
     <Suspense fallback={null}>
-      <div className="min-h-screen bg-[#f5f1eb]">
+      <div className="min-h-screen bg-gray-100">
         <Sidebar />
         <MobileSidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
         <div className="lg:pl-72">

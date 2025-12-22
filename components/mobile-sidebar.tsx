@@ -47,7 +47,7 @@ export function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
                 <GraduationCap className="w-5 h-5 text-white" />
               </div>
               <span className="text-lg font-semibold text-gray-900" style={{ fontFamily: "Cambria, serif" }}>
-                DCTFUSION
+                SMS
               </span>
             </div>
             <Button variant="ghost" size="icon" onClick={onClose} className="text-gray-700 hover:text-gray-900">

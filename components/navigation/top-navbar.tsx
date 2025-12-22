@@ -19,7 +19,7 @@ interface TopNavbarProps {
 
 export function TopNavbar({ onMenuClick }: TopNavbarProps) {
   return (
-    <header className="sticky top-0 z-40 flex h-20 items-center gap-4 border-b border-gray-200 bg-white/80 backdrop-blur-xl shadow-sm px-6">
+    <header className="sticky top-0 z-40 flex h-20 items-center gap-4 px-6">
       <Button
         variant="ghost"
         size="icon"

@@ -3,7 +3,7 @@
 import { signIn, signOut } from '../authhandlers/auth';
 import { AuthError } from 'next-auth';
 import bcrypt from 'bcryptjs';
-import { prisma } from '@/lib/db';
+import { prisma } from '@/lib/prisma';
 import { compileActivationTemplate, compileResetPassTemplate, sendMail } from '@/lib/mail';
 import { signJwt,verifyJwt } from '@/lib/jwt';
 

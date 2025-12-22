@@ -11,6 +11,14 @@ const allowedOrigins = [
 
 export default async function proxy(request: NextRequest) {
   try {
+
+    const url = new URL(request.url)
+    const q = url.searchParams.get("q")
+
+    if (!q && url.pathname.includes("/dashboard") && url.pathname !== "/dashboard/choose-school") {
+      const redirectUrl = new URL("/dashboard/choose-school", request.url)
+      return NextResponse.redirect(redirectUrl)
+    }
     // Get session with error handling
     const session = await auth().catch((error) => {
       console.error("Auth error in middleware:", error);
@@ -66,9 +74,6 @@ export default async function proxy(request: NextRequest) {
     if (isPublic && session?.user && !callbackUrl && pathname !== "/") {
       return NextResponse.redirect(new URL("/dashboard", request.url));
     }
-
-    const url = request.nextUrl;
-    let q = url.searchParams.get("q");
 
     if (pathname.includes("dashboard")) {
       let q = url.searchParams.get("q");

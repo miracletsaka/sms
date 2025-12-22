@@ -41,7 +41,7 @@ import {
 } from "recharts"
 import { useSearchParams } from "next/navigation"
 import { use, useEffect, useState } from "react"
-import { Institution } from "@prisma/client"
+import { Institution } from "@/generated/prisma"
 
 const attendanceData = [
   { day: "Mon", rate: 92 },

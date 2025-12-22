@@ -1,6 +1,6 @@
 "server only"
 import { auth } from "@/app/authhandlers/auth"
-import { prisma } from "./db"
+import { prisma } from "./prisma"
 import { redirect } from "next/navigation"
 
 export const getUser = async () =>{

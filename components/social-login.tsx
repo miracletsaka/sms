@@ -22,21 +22,16 @@ export function Sociallogin() {
           <div className="w-full border-t border-gray-300" />
         </div>
         <div className="relative flex justify-center text-sm">
-          <span className="px-4 bg-[#faf9f7] text-gray-500" style={{ fontFamily: "Cambria, serif" }}>
+          <span className="px-4 bg-[#faf9f7] text-xs font-bold text-gray-400" style={{ fontFamily: "Cambria, serif" }}>
             Or continue with
           </span>
         </div>
       </div>
 
-      {/* Social login */}
-      <div className="grid grid-cols-2 gap-4">
-        <Button
-          onClick={signWithGoogle}
-          variant="outline"
-          className="h-12 border-gray-300 hover:bg-gray-50 bg-transparent"
-          style={{ fontFamily: "Cambria, serif" }}
-        >
-          <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
+      <button
+        onClick={signWithGoogle}
+        className="w-full flex items-center justify-center bg-[red] text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-indigo-600 transition-all hover:scale-105 shadow-lg mb-6">
+        <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
             <path
               fill="currentColor"
               d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -55,8 +50,7 @@ export function Sociallogin() {
             />
           </svg>
           Google
-        </Button>
-      </div>
+      </button>
     </>
   )
 }

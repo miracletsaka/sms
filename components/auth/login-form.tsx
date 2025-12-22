@@ -63,14 +63,14 @@ export function LoginForm() {
       )}
 
       <div className="space-y-2">
-        <Label htmlFor="email" className="text-sm font-semibold text-gray-900" style={{ fontFamily: "Cambria, serif" }}>
+        <Label htmlFor="email" className="text-xs font-bold text-gray-400" style={{ fontFamily: "Cambria, serif" }}>
           Email address
         </Label>
         <Input
           id="email"
           type="email"
           placeholder="you@example.com"
-          className="h-12 bg-white border-gray-300 focus:border-blue-600 focus:ring-blue-600"
+          className="bg-white border-gray-300 focus:border-blue-600 focus:ring-blue-600"
           style={{ fontFamily: "Cambria, serif" }}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -82,15 +82,14 @@ export function LoginForm() {
         <div className="flex items-center justify-between">
           <Label
             htmlFor="password"
-            className="text-sm font-semibold text-gray-900"
+            className="text-xs font-bold text-gray-400"
             style={{ fontFamily: "Cambria, serif" }}
           >
             Password
           </Label>
           <Link
             href="/forgot-password"
-            className="text-sm text-blue-600 hover:text-blue-700 font-medium"
-            style={{ fontFamily: "Cambria, serif" }}
+            className="text-xs font-bold text-blue-400"
           >
             Forgot password?
           </Link>
@@ -100,7 +99,7 @@ export function LoginForm() {
             id="password"
             type={showPassword ? "text" : "password"}
             placeholder="Enter your password"
-            className="h-12 bg-white border-gray-300 focus:border-blue-600 focus:ring-blue-600 pr-12"
+            className="bg-white border-gray-300 focus:border-blue-600 focus:ring-blue-600 pr-12"
             style={{ fontFamily: "Cambria, serif" }}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -126,22 +125,18 @@ export function LoginForm() {
         />
         <Label
           htmlFor="remember"
-          className="text-sm text-gray-700 cursor-pointer"
-          style={{ fontFamily: "Cambria, serif" }}
+          className="text-xs font-bold text-gray-400"
         >
           Remember me for 30 days
         </Label>
       </div>
 
-      <Button
+      <button
         type="submit"
-        className="w-full h-12 bg-gray-900 hover:bg-gray-800 text-white text-base font-semibold group"
-        style={{ fontFamily: "Cambria, serif" }}
         disabled={isLoading}
-      >
-        {isLoading ? "loging in..." : "Sign in"}
-        <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-      </Button>
+        className="w-full bg-indigo-500 text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-indigo-600 transition-all hover:scale-105 shadow-lg mb-6">
+        {isLoading ? "loging in..." : "Login →"}
+      </button>
     </form>
   )
 }

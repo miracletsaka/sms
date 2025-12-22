@@ -13,7 +13,7 @@ export default function HelloSection() {
           <div className="w-full md:w-1/2 bg-[#003D6B] text-white px-8 md:px-12 py-16 md:py-24 flex flex-col justify-center">
             <div className="max-w-md">
               <p className="text-sm space-x-2 font-medium mb-8 tracking-wide">
-                <span className="font-bold">DCTFUSION</span>
+                <span className="font-bold">SMS</span>
                 <span className="font-bold">||</span>
                 <span className="font-light">AI Powered</span>
               </p>

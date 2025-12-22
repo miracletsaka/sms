@@ -32,21 +32,14 @@ export function Sidebar() {
   const institutionId = searchParams.get('q');
 
   return (
-    <aside className="hidden lg:fixed lg:inset-y-0 lg:flex lg:w-72 lg:flex-col bg-white/80 backdrop-blur-xl border-r border-gray-200 shadow-lg">
+    <aside className="hidden lg:fixed lg:inset-y-0 lg:flex lg:w-72 lg:flex-col">
       <div className="flex flex-col flex-1 min-h-0">
         {/* Logo */}
-        <div className="flex items-center h-20 px-6 border-b border-gray-200">
+        <div className="flex items-center h-20 px-6">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
-              <GraduationCap className="w-6 h-6 text-white" />
-            </div>
-            <div>
-              <span className="text-xl font-bold text-gray-900" style={{ fontFamily: "Cambria, serif" }}>
-                DCTFUSION
-              </span>
-              <p className="text-xs text-gray-500" style={{ fontFamily: "Cambria, serif" }}>
-                institution Management
-              </p>
+            <div className="font-bold text-gray-900">
+              {/* logo in png */}
+              <img src="/sms.png" alt="SMS Logo" className="w-18 h-auto" />
             </div>
           </div>
         </div>
@@ -59,15 +52,20 @@ export function Sidebar() {
               <Link
                 key={item.name}
                 href={`${item.href}?q=${institutionId}`}
-                className={`group flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 ${
+                style={{
+                  fontFamily: "'Inter', -apple-system, sans-serif",
+                  letterSpacing: '-0.02em',
+                  lineHeight: '1.3',
+                
+                }}
+                className={`text-xs font-bold max-w-2xl mx-auto group flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${
                   isActive
                     ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-blue-500/30"
-                    : "text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                    : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
                 }`}
-                style={{ fontFamily: "Cambria, serif" }}
               >
                 <item.icon
-                  className={`w-5 h-5 ${isActive ? "text-white" : "text-gray-500 group-hover:text-gray-700"}`}
+                  className={`w-3 h-3 font-bold ${isActive ? "text-white" : "text-gray-400 group-hover:text-gray-500"}`}
                 />
                 {item.name}
                 {isActive && <div className="ml-auto w-2 h-2 bg-white rounded-full animate-pulse" />}
@@ -77,7 +75,7 @@ export function Sidebar() {
         </nav>
 
         {/* Help section */}
-        <div className="p-4 border-t border-gray-200">
+        <div className="p-4 ">
           <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl p-4 border border-blue-100">
             <HelpCircle className="w-8 h-8 text-blue-600 mb-2" />
             <p className="text-sm font-semibold text-gray-900 mb-1" style={{ fontFamily: "Cambria, serif" }}>
