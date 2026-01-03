@@ -150,7 +150,6 @@ export async function POST(request: NextRequest) {
               firstName: guardian.firstName,
               lastName: guardian.lastName,
               password: hashedPassword,
-              role: "PARENT",
               phone: guardian.phone || null,
               dateOfBirth: new Date(), // Default date
             },
@@ -208,7 +207,6 @@ export async function POST(request: NextRequest) {
             lastName,
             dateOfBirth: dateOfBirth ? new Date(dateOfBirth) : new Date(),
             password: hashedPassword,
-            role: "STUDENT",
             phone: phone || null,
           },
         })
@@ -216,11 +214,9 @@ export async function POST(request: NextRequest) {
         // Create student profile with all enrollment data
         const student = await tx.student.create({
           data: {
+            institutionId:institutionId,
             user: {
               connect: { id: newUser.id },
-            },
-            institution: {
-              connect: { id: institutionId },
             },
             firstName,
             middleName: middleName || null,
@@ -289,10 +285,8 @@ export async function POST(request: NextRequest) {
       // Create student without user account
       newStudent = await prisma.student.create({
         data: {
-          institution: {
-            connect: { id: institutionId },
-          },
           firstName,
+          institutionId:institutionId,
           middleName: middleName || null,
           lastName,
           admissionNumber,

@@ -124,3 +124,10 @@
     @apply bg-background text-foreground;
   }
 }
+
+body {
+  font-family: 'Sora', 'Space Grotesk', sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.06em;
+  line-height: 0.85;
+}

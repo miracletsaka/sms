@@ -1,54 +1,54 @@
-import { type NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
-import bcrypt from "bcryptjs";
+import { type NextRequest, NextResponse } from "next/server"
+import { prisma } from "@/lib/prisma"
+import bcrypt from "bcryptjs"
 
 export async function GET(request: NextRequest) {
   // Access the query parameter 'id' from the incoming request URL
-  const searchParams = request.nextUrl.searchParams;
-  const id = searchParams.get('id');
+  const searchParams = request.nextUrl.searchParams
+  const id = searchParams.get("id")
 
-  console.log("Fetching institution with ID:", id);
+  console.log("Fetching institution with ID:", id)
 
   if (!id) {
-    return NextResponse.json({ error: 'Institution ID is required' }, { status: 400 });
+    return NextResponse.json({ error: "Institution ID is required" }, { status: 400 })
   }
 
   const institutionData = await prisma.institution.findUnique({
-    where:{
-      id
-    }
+    where: {
+      id,
+    },
   })
 
-  console.log("Institution data retrieved:", institutionData);
+  console.log("Institution data retrieved:", institutionData)
   if (institutionData) {
-    return NextResponse.json(institutionData);
+    return NextResponse.json(institutionData)
   } else {
-    return NextResponse.json({ error: 'Institution not found' }, { status: 404 });
+    return NextResponse.json({ error: "Institution not found" }, { status: 404 })
   }
-
 }
-
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
+    const body = await request.json()
 
-    console.log("Request body:", body);
+    console.log("Request body:", body)
     const {
       institutionName,
       institutionType,
       address,
       city,
+      state,
       country,
       phone,
+      email,
+      website,
       adminFirstName,
       adminLastName,
       adminEmail,
       adminPassword,
       adminConfirmPassword,
-    } = body;
+    } = body
 
-    // Validation
     if (
       !institutionName ||
       !institutionType ||
@@ -61,27 +61,19 @@ export async function POST(request: NextRequest) {
       !adminEmail ||
       !adminPassword
     ) {
-      return NextResponse.json(
-        { error: "Please fill in all required fields." },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Please fill in all required fields." }, { status: 400 })
     }
 
     if (adminPassword !== adminConfirmPassword) {
-      return NextResponse.json(
-        { error: "Passwords do not match." },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Passwords do not match." }, { status: 400 })
     }
 
-    // Check if user exists
     let adminUser = await prisma.user.findUnique({
       where: { email: adminEmail },
-    });
+    })
 
-    // If user doesn’t exist, create new one
     if (!adminUser) {
-      const hashedPassword = await bcrypt.hash(adminPassword, 10);
+      const hashedPassword = await bcrypt.hash(adminPassword, 10)
 
       adminUser = await prisma.user.create({
         data: {
@@ -90,45 +82,85 @@ export async function POST(request: NextRequest) {
           email: adminEmail,
           dateOfBirth: new Date(), // Placeholder, adjust as needed
           password: hashedPassword,
-          role: "ADMIN",
         },
-      });
+      })
     }
 
-    // Now create the institution and connect the admin
-    const newinstitution = await prisma.institution.create({
+    const newInstitution = await prisma.institution.create({
       data: {
         name: institutionName,
         institutionType: institutionType,
         address,
-        state:"MALAWI",
-        email: adminEmail,
+        state: state || "MALAWI",
+        email: email || adminEmail,
         city,
         country,
         phone,
+        website: website || null,
       },
-    });
+    })
 
-    await prisma.usersOnInstitution.create({
+    let adminRole = await prisma.userRole.findUnique({
+      where: { name: "ADMIN" },
+    })
+
+    if (!adminRole) {
+      adminRole = await prisma.userRole.create({
+        data: {
+          name: "ADMIN",
+          description: "Administrator role with full access",
+          permissions: 255, // Full permissions (all bits set)
+          icon: "Shield",
+          color: "#ef4444",
+          status: "ACTIVE",
+        },
+      })
+    }
+
+    const userRoleRecord = await prisma.role.create({
+      data: {
+        role:{
+          connect:{
+            id:adminRole.id
+          }
+        }
+      },
+    })
+
+    await prisma.roleOnInstitutionToUserAssignedDep.create({
       data: {
         user: {
-          connect: { id: adminUser.id },
-        },
-        institution: {
-          connect: { id: newinstitution.id },
-        },
+          connect:{
+            id : adminUser.id
+          }},
+        role:{
+          connect:{
+            id : userRoleRecord.id
+          }} ,
+        institution:{
+          connect:{
+            id : newInstitution.id
+          }},
       },
-    });
+    })
+
+    console.log("Institution created successfully:", newInstitution)
 
     return NextResponse.json(
-      { success: true, institution: newinstitution },
-      { status: 201 }
-    );
+      {
+        success: true,
+        institution: newInstitution,
+        admin: {
+          id: adminUser.id,
+          email: adminUser.email,
+          firstName: adminUser.firstName,
+          lastName: adminUser.lastName,
+        },
+      },
+      { status: 201 },
+    )
   } catch (error) {
-    console.error("Error registering institution:", error);
-    return NextResponse.json(
-      { error: "Failed to register institution." },
-      { status: 500 }
-    );
+    console.error("Error registering institution:", error)
+    return NextResponse.json({ error: "Failed to register institution." }, { status: 500 })
   }
 }

@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card } from "@/components/ui/card"
-import { GraduationCap, ArrowRight, ArrowLeft, Check, Building2, User, Mail, Lock, MapPin, Phone } from "lucide-react"
+import { GraduationCap, ArrowRight, ArrowLeft, Check, Building2, User, Mail, Lock, MapPin, Phone, Loader2 } from "lucide-react"
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { toast } from "sonner"
@@ -16,6 +16,7 @@ export default function RegisterPage() {
   const router = useRouter()
   const [currentStep, setCurrentStep] = useState(1)
   const [mounted, setMounted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [formData, setFormData] = useState({
     // institution Information
     institutionName: "",
@@ -53,6 +54,8 @@ export default function RegisterPage() {
   const handleSubmit = async(e: React.FormEvent) => {
     e.preventDefault()
 
+    setIsSubmitting(true)
+
       try {
         const response = await fetch("/api/institution", {
           method: "POST",
@@ -64,11 +67,14 @@ export default function RegisterPage() {
 
         if (response.ok) {
           toast.success("Teacher added successfully")
-          router.push("/login")
+          router.push("/success")
         } else {
           const data = await response.json()
+          toast.error(data.error|| "Failed to add institution")
+          setIsSubmitting(false)
           throw new Error(data.error || "Failed to create teacher")
         }
+        setIsSubmitting(false)
       } catch (error: any) {
         console.error("[v0] Create institution error:", error)
         toast.error(error.message || "Failed to add institution")
@@ -153,7 +159,7 @@ export default function RegisterPage() {
                       <Input
                         id="institutionName"
                         placeholder="e.g., Miracle High institution"
-                        className=" bg-white border-gray-300 focus:border-blue-600 focus:ring-blue-600"
+                        className=" bg-white shadow placeholder:text-gray-400 focus:border-blue-600 focus:ring-blue-600"
                         style={{ fontFamily: "Inter', -apple-system, sans-serif" }}
                         value={formData.institutionName}
                         onChange={(e) => setFormData({ ...formData, institutionName: e.target.value })}
@@ -193,7 +199,7 @@ export default function RegisterPage() {
                           id="phone"
                           type="tel"
                           placeholder="+265998970102"
-                          className=" pl-10 bg-white border-gray-300 focus:border-blue-600 focus:ring-blue-600"
+                          className=" pl-10 bg-white shadow placeholder:text-gray-400 focus:border-blue-600 focus:ring-blue-600"
                           style={{ fontFamily: "Inter', -apple-system, sans-serif" }}
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
@@ -215,7 +221,7 @@ export default function RegisterPage() {
                         <Input
                           id="address"
                           placeholder="123 Main Street"
-                          className=" pl-10 bg-white border-gray-300 focus:border-blue-600 focus:ring-blue-600"
+                          className=" pl-10 bg-white shadow placeholder:text-gray-400 focus:border-blue-600 focus:ring-blue-600"
                           style={{ fontFamily: "Inter', -apple-system, sans-serif" }}
                           value={formData.address}
                           onChange={(e) => setFormData({ ...formData, address: e.target.value })}
@@ -231,7 +237,7 @@ export default function RegisterPage() {
                       <Input
                         id="city"
                         placeholder="Miracle"
-                        className=" bg-white border-gray-300 focus:border-blue-600 focus:ring-blue-600"
+                        className=" bg-white shadow placeholder:text-gray-400 focus:border-blue-600 focus:ring-blue-600"
                         style={{ fontFamily: "Inter', -apple-system, sans-serif" }}
                         value={formData.city}
                         onChange={(e) => setFormData({ ...formData, city: e.target.value })}
@@ -250,7 +256,7 @@ export default function RegisterPage() {
                       <Input
                         id="country"
                         placeholder="Malawi"
-                        className=" bg-white border-gray-300 focus:border-blue-600 focus:ring-blue-600"
+                        className=" bg-white shadow placeholder:text-gray-400 focus:border-blue-600 focus:ring-blue-600"
                         style={{ fontFamily: "Inter', -apple-system, sans-serif" }}
                         value={formData.country}
                         onChange={(e) => setFormData({ ...formData, country: e.target.value })}
@@ -289,7 +295,7 @@ export default function RegisterPage() {
                       <Input
                         id="adminFirstName"
                         placeholder="Miracle"
-                        className=" bg-white border-gray-300 focus:border-blue-600 focus:ring-blue-600"
+                        className=" bg-white shadow placeholder:text-gray-400 focus:border-blue-600 focus:ring-blue-600"
                         style={{ fontFamily: "Inter', -apple-system, sans-serif" }}
                         value={formData.adminFirstName}
                         onChange={(e) => setFormData({ ...formData, adminFirstName: e.target.value })}
@@ -308,7 +314,7 @@ export default function RegisterPage() {
                       <Input
                         id="adminLastName"
                         placeholder="Tsaka"
-                        className=" bg-white border-gray-300 focus:border-blue-600 focus:ring-blue-600"
+                        className=" bg-white shadow placeholder:text-gray-400 focus:border-blue-600 focus:ring-blue-600"
                         style={{ fontFamily: "Inter', -apple-system, sans-serif" }}
                         value={formData.adminLastName}
                         onChange={(e) => setFormData({ ...formData, adminLastName: e.target.value })}
@@ -330,7 +336,7 @@ export default function RegisterPage() {
                           id="adminEmail"
                           type="email"
                           placeholder="admin@institution.edu"
-                          className=" pl-10 bg-white border-gray-300 focus:border-blue-600 focus:ring-blue-600"
+                          className=" pl-10 bg-white shadow placeholder:text-gray-400 focus:border-blue-600 focus:ring-blue-600"
                           style={{ fontFamily: "Inter', -apple-system, sans-serif" }}
                           value={formData.adminEmail}
                           onChange={(e) => setFormData({ ...formData, adminEmail: e.target.value })}
@@ -353,7 +359,7 @@ export default function RegisterPage() {
                           id="adminPassword"
                           type="password"
                           placeholder="Create a strong password"
-                          className=" pl-10 bg-white border-gray-300 focus:border-blue-600 focus:ring-blue-600"
+                          className=" pl-10 bg-white shadow placeholder:text-gray-400 focus:border-blue-600 focus:ring-blue-600"
                           style={{ fontFamily: "Inter', -apple-system, sans-serif" }}
                           value={formData.adminPassword}
                           onChange={(e) => setFormData({ ...formData, adminPassword: e.target.value })}
@@ -379,7 +385,7 @@ export default function RegisterPage() {
                           id="adminConfirmPassword"
                           type="password"
                           placeholder="Re-enter your password"
-                          className=" pl-10 bg-white border-gray-300 focus:border-blue-600 focus:ring-blue-600"
+                          className=" pl-10 bg-white shadow placeholder:text-gray-400 focus:border-blue-600 focus:ring-blue-600"
                           style={{ fontFamily: "Cambria, serif" }}
                           value={formData.adminConfirmPassword}
                           onChange={(e) => setFormData({ ...formData, adminConfirmPassword: e.target.value })}
@@ -562,10 +568,11 @@ export default function RegisterPage() {
                 ) : (
                   <Button
                     type="submit"
+                    disabled={isSubmitting}
                     className=" px-8 bg-blue-600 hover:bg-blue-700 text-white font-semibold group"
                     style={{ fontFamily: "Inter', -apple-system, sans-serif" }}
                   >
-                    <span className="hidden lg:block">Create Workspace</span>
+                    <span className="hidden lg:block">{isSubmitting ? <Loader2 className="animate-spin" /> : 'Create Workspace'}</span>
                     <Check className="w-5 h-5 ml-2 group-hover:scale-110 transition-transform" />
                   </Button>
                 )}

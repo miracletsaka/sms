@@ -13,21 +13,15 @@ export default async function proxy(request: NextRequest) {
   try {
 
     const url = new URL(request.url)
-    const q = url.searchParams.get("q")
+     const origin = request.headers.get('origin');
+    const { pathname, searchParams } = request.nextUrl;
+    const callbackUrl = searchParams.get("callbackUrl");
 
-    if (!q && url.pathname.includes("/dashboard") && url.pathname !== "/dashboard/choose-school") {
-      const redirectUrl = new URL("/dashboard/choose-school", request.url)
-      return NextResponse.redirect(redirectUrl)
-    }
     // Get session with error handling
     const session = await auth().catch((error) => {
       console.error("Auth error in middleware:", error);
       return null;
     });
-
-    const origin = request.headers.get('origin');
-    const { pathname, searchParams } = request.nextUrl;
-    const callbackUrl = searchParams.get("callbackUrl");
 
     // Only check origin for non-GET requests to avoid blocking navigation
     if (origin && request.method !== 'GET' && !allowedOrigins.includes(origin)) {
@@ -73,16 +67,6 @@ export default async function proxy(request: NextRequest) {
     // Redirect authenticated users away from public routes (except with callback)
     if (isPublic && session?.user && !callbackUrl && pathname !== "/") {
       return NextResponse.redirect(new URL("/dashboard", request.url));
-    }
-
-    if (pathname.includes("dashboard")) {
-      let q = url.searchParams.get("q");
-
-      // ✅ If q is missing or null, set default
-      if (!q || q === "null") {
-        url.searchParams.set("q", "6915fd51e1018ed4bac50d28");
-        return NextResponse.redirect(url);
-      }
     }
 
     return NextResponse.next();

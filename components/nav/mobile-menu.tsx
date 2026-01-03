@@ -5,6 +5,7 @@ import type React from "react"
 import { useState } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { ChevronDown, Sparkles, Building2, DollarSign } from "lucide-react"
+import { useSession } from "next-auth/react"
 
 const MobileProductItem = ({
   title,
@@ -105,6 +106,11 @@ const MobileMenuSection = ({
 }
 
 export function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+
+  const { data : session } = useSession()
+
+  const user = session?.user
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -297,12 +303,40 @@ export function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () =
                 <button className="w-full px-5 py-3 text-sm font-semibold text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
                   Book a Demo
                 </button>
-                <button className="w-full px-5 py-3 text-sm font-semibold text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
-                  Login
-                </button>
-                <button className="w-full bg-black text-white px-5 py-3 rounded-full font-semibold hover:bg-gray-800 transition-colors">
-                  Get Started
-                </button>
+                
+                {user ? (
+                  // Show user info and dashboard when logged in
+                  <>
+                    <div className="flex items-center gap-3 px-5 py-3 bg-gray-50 rounded-lg">
+                      <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden flex-shrink-0">
+                        {user.image ? (
+                          <img src={user.image as string} alt={user.name as string} className="w-full h-full object-cover" />
+                        ) : (
+                          <span className="text-gray-600 font-medium">
+                            {user.name?.charAt(0).toUpperCase() || 'U'}
+                          </span>
+                        )}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-semibold text-gray-900 truncate">{user.name}</p>
+                        <p className="text-xs text-gray-500 truncate">{user.email}</p>
+                      </div>
+                    </div>
+                    <button className="w-full bg-black text-white px-5 py-3 rounded-full font-semibold hover:bg-gray-800 transition-colors">
+                      Go to Dashboard
+                    </button>
+                  </>
+                ) : (
+                  // Show login/signup when not logged in
+                  <>
+                    <button className="w-full px-5 py-3 text-sm font-semibold text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
+                      Login
+                    </button>
+                    <button className="w-full bg-black text-white px-5 py-3 rounded-full font-semibold hover:bg-gray-800 transition-colors">
+                      Get Started
+                    </button>
+                  </>
+                )}
               </div>
             </div>
           </motion.div>

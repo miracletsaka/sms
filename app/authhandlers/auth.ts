@@ -26,7 +26,6 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       },
       async authorize(credentials: Partial<Record<"email" | "password", unknown>>) {
         try {
-
   
           const user = await prisma.user.findUnique({
               where: {

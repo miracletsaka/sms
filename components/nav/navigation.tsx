@@ -5,6 +5,7 @@ import { MenuItem } from "./menu-item"
 import { MobileMenu } from "./mobile-menu"
 import { Sparkles, Building2, DollarSign, Menu, X } from "lucide-react"
 import Link from "next/link"
+import { useSession } from "next-auth/react"
 
 const ProductItem = ({
   title,
@@ -76,8 +77,11 @@ const SimpleLink = ({
 }
 
 export function Navigation() {
+  const { data : session } = useSession()
   const [active, setActive] = useState<string | null>(null)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+  const user = session?.user
 
   return (
     <>
@@ -273,15 +277,37 @@ export function Navigation() {
           <Link href="/" className="hover:text-gray-900 transition-colors">
             Book a Demo
           </Link>
-          <Link href="/login" className="hover:text-gray-900 transition-colors">
-            Login
-          </Link>
-          <Link
-            href="/register"
-            className="bg-black text-white px-5 py-2 rounded-full font-medium hover:bg-gray-800 transition-colors"
-          >
-            Get Started
-          </Link>
+          
+          {user ? (
+            // Show avatar when user is logged in
+            <div className="flex items-center gap-3">
+              <Link href="/dashboard" className="hover:text-gray-900 transition-colors">
+                Dashboard
+              </Link>
+              <button className="w-10 h-10 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors flex items-center justify-center overflow-hidden">
+                {user.image ? (
+                  <img src={user.image as string} alt={user.name as string} className="w-full h-full object-cover" />
+                ) : (
+                  <span className="text-gray-600 font-medium">
+                    {user.name?.charAt(0).toUpperCase() || 'U'}
+                  </span>
+                )}
+              </button>
+            </div>
+          ) : (
+            // Show login/signup when not logged in
+            <>
+              <Link href="/login" className="hover:text-gray-900 transition-colors">
+                Login
+              </Link>
+              <Link
+                href="/dashboard"
+                className="bg-black text-white px-5 py-2 rounded-full font-medium hover:bg-gray-800 transition-colors"
+              >
+                Get Started
+              </Link>
+            </>
+          )}
         </div>
 
         <button

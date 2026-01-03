@@ -36,7 +36,7 @@ export function LoginForm() {
 
       if(result.error === "Configuration"){
         console.error(result.error)
-        toast("Please verify your email first.")
+        toast("Password Incorrect.")
         return
       }
 
